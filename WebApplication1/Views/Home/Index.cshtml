@@ -5,12 +5,14 @@
 }
 
 <h2>Продукты</h2>
+
 <table class="table">
     <tr>
         <td>Название</td>
         <td>Количество</td>
         <td>Закупочная стоимость</td>
         <td>Категория</td>
+        <td></td>
     </tr>
     @foreach (var i in ViewBag.Products)
     {
@@ -19,7 +21,8 @@
             <td>@i.Count</td>
             <td>@i.Price</td>
             <td>@i.Service.Service1</td>
+            <td><a href="~/Home/Delete/@i.Id" class="btn-default">Удалить</a></td>
         </tr>
     }
 </table>
-
+<a class="btn" href="~/Home/Create">Добавить</a>
