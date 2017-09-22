@@ -6,23 +6,43 @@
 
 <h2>Продукты</h2>
 
-<table class="table">
-    <tr>
-        <td>Название</td>
-        <td>Количество</td>
-        <td>Закупочная стоимость</td>
-        <td>Категория</td>
-        <td></td>
-    </tr>
-    @foreach (var i in ViewBag.Products)
-    {
+<table class="table table-striped">
+    <thead>
         <tr>
-            <td>@i.Name</td>
-            <td>@i.Count</td>
-            <td>@i.Price</td>
-            <td>@i.Service.Service1</td>
-            <td><a href="~/Home/Delete/@i.Id" class="btn-default">Удалить</a></td>
+            <td>Название</td>
+            <td>Количество</td>
+            <td>Закупочная стоимость</td>
+            <td>Категория</td>
+            <td></td>
         </tr>
-    }
+    </thead>
+    <tbody>
+        @foreach (var i in ViewBag.Products)
+        {
+            <tr>
+                <td>@i.Name</td>
+                <td>@i.Count</td>
+                <td class="price">@i.Price</td>
+                <td>@i.Service.Service1</td>
+                <td><a href="~/Home/Delete/@i.Id" class="btn-default">Удалить</a></td>
+            </tr>
+        }
+    </tbody>
 </table>
 <a class="btn" href="~/Home/Create">Добавить</a>
+<button class="btn btn-info btn-lg" type="button" data-toggle="modal" data-target="#myModal">Индексация</button>
+<div id="myModal" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Индексация цен</h4>
+            </div>
+            <div class="modal-body">Введите процент индексации<input type="number" min="0" max="100" id="per-cent-of-indexing" class="form-control" /></div>
+            <div class="modal-footer">
+                <button class="btn btn-success" type="button" data-dismiss="modal" id="indexing">Применить</button>
+                <button class="btn btn-default" type="button" data-dismiss="modal">Закрыть</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="~/Scripts/Indexing.js"></script>
